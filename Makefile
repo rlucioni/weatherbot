@@ -6,6 +6,7 @@ deploy:
 	@echo "generating .env.yaml from .env..."
 	@echo "SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}" >> .env.yaml
 	@echo "SLACK_CHANNEL_ID: ${SLACK_CHANNEL_ID}" >> .env.yaml
+	@echo "GEMINI_API_KEY: ${GEMINI_API_KEY}" >> .env.yaml
 	@echo "deploying to GCP..."
 	npm run deploy
 	@rm .env.yaml
