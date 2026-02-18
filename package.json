@@ -1,0 +1,32 @@
+{
+  "name": "weatherbot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "prettier": "prettier . --write",
+    "serve": "functions-framework --target=weatherbot",
+    "deploy": "gcloud functions deploy weatherbot --gen2 --runtime=nodejs24 --region=us-central1 --source=. --entry-point=weatherbot --trigger-http --allow-unauthenticated --env-vars-file=.env.yaml",
+    "schedule": "gcloud scheduler jobs create http weatherbot-cron --schedule=\"0 7 * * *\" --time-zone=America/New_York --uri=\"$(gcloud functions describe weatherbot --region=us-central1 --format='value(serviceConfig.uri)')\" --http-method=GET --location=us-central1",
+    "reschedule": "gcloud scheduler jobs update http weatherbot-cron --location=us-central1 --schedule=\"0 7 * * *\" --time-zone=America/New_York",
+    "pause": "gcloud scheduler jobs pause weatherbot-cron --location=us-central1",
+    "resume": "gcloud scheduler jobs resume weatherbot-cron --location=us-central1"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "4.0.1",
+    "@google/genai": "1.41.0",
+    "@slack/web-api": "7.13.0",
+    "cheerio": "1.2.0",
+    "dotenv": "17.2.3"
+  },
+  "devDependencies": {
+    "@eslint/compat": "2.0.0",
+    "@eslint/js": "9.39.1",
+    "eslint": "9.39.1",
+    "eslint-config-prettier": "10.1.8",
+    "globals": "16.5.0",
+    "prettier": "3.7.4"
+  }
+}
