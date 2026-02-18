@@ -64,12 +64,10 @@ functions.http('weatherbot', async (_req, res) => {
       .first();
     const forecastContent =
       forecastTd.length > 0 ? (forecastTd.html() || '').trim() : '';
-    console.log('forecastContent:', forecastContent);
 
     const discussionPre = $discussion('#proddiff');
     const discussionContent =
       discussionPre.length > 0 ? (discussionPre.html() || '').trim() : '';
-    console.log('discussionContent:', discussionContent);
 
     const prompt = PROMPT_TEMPLATE.replace(
       '{{FORECAST_HTML}}',
