@@ -22,13 +22,13 @@ $ npm install
 To test the function locally:
 
 ```bash
-$ npm run serve
+$ make serve
 ```
 
 Then ping the server to invoke the function:
 
 ```bash
-$ curl localhost:8080
+$ make ping
 ```
 
 ## Deployment

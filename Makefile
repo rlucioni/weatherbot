@@ -2,6 +2,7 @@ include .env
 export $(shell sed 's/=.*//' .env)
 
 deploy:
+	@rm -f .env.yaml
 	@echo "generating .env.yaml from .env..."
 	@echo "SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}" >> .env.yaml
 	@echo "SLACK_CHANNEL_ID: ${SLACK_CHANNEL_ID}" >> .env.yaml
