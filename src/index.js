@@ -75,8 +75,15 @@ functions.http('weatherbot', async (_req, res) => {
     ).replace('{{DISCUSSION_HTML}}', discussionContent);
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-3.7-flash',
       contents: prompt,
+    });
+
+    console.info('token counts:', {
+      inputTokens: response.usageMetadata?.promptTokenCount,
+      cachedTokens: response.usageMetadata?.cachedContentTokenCount,
+      thinkingTokens: response.usageMetadata?.thoughtsTokenCount,
+      outputTokens: response.usageMetadata?.candidatesTokenCount,
     });
 
     const text = response?.text ?? '';
