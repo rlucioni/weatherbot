@@ -75,7 +75,7 @@ functions.http('weatherbot', async (_req, res) => {
     ).replace('{{DISCUSSION_HTML}}', discussionContent);
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.7-flash',
+      model: 'gemini-3.8-flash',
       contents: prompt,
     });
 
